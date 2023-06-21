@@ -23,7 +23,7 @@
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    padding: 5px;
+    padding: 10px;
     background-color: lightgray;
     width: 400px;
     height: 90px;
@@ -33,9 +33,13 @@
     font-size: 50px;
     font-weight: 900;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    overflow: hidden;
 }
 
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 100px;
     border-radius: 50px;

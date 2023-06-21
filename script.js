@@ -55,7 +55,7 @@ function operate(firstInput, operator, secondInput) {
     else if (operator === '-') {
         return subtract(array);
     }
-    else if (operator === '*') {
+    else if (operator === 'X') {
         return multiply(array);
     }
     else if (operator === '÷') {
@@ -70,7 +70,6 @@ function operate(firstInput, operator, secondInput) {
 
 let equals = document.querySelector('.equals');
 equals.addEventListener('click', () => {
-    let displayVal = operate(firstInput, operator, secondInput);
-    return;
+    return display.textContent = operate(firstInput, operator, secondInput);
 })
 
