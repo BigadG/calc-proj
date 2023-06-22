@@ -4,6 +4,7 @@ let numBtns = document.querySelector('.numBtns');
 let display = document.querySelector('.display');
 
 
+
 numBtns.addEventListener('click', event => {
   let closestBtn = event.target.closest("button");
   if (!closestBtn || !numBtns.contains(closestBtn)) {
@@ -14,6 +15,8 @@ numBtns.addEventListener('click', event => {
   display.textContent = displayVal
   return;
 })
+
+
 
 let firstInputFunc = function(displayVal) {
     let displayValArray = displayVal.split(/\x|\+|\-|\÷/);
@@ -35,9 +38,6 @@ let operatorFunc = function(displayVal) {
     } else return 'ERROR';
 }
 
-let firstInput = firstInputFunc(displayVal);
-let secondInput = secondInputFunc(displayVal);
-let operator = operatorFunc(displayVal);
 
 
 const sum = function (array) {
@@ -60,18 +60,20 @@ const divide = function (array) {
    : 0;
 };
 
+
+
 function operate(firstInput, operator, secondInput) {
  array = [firstInput, secondInput];
-    if (operator === '+') {
+    if (operator == '+') {
         return sum(array);
     }
-    else if (operator === '-') {
+    else if (operator == '-') {
         return subtract(array);
     }
-    else if (operator === 'x') {
+    else if (operator == 'x') {
         return multiply(array);
     }
-    else if (operator === '÷') {
+    else if (operator == '÷') {
         return divide(array);
     } else {
         return "ERROR"
@@ -79,12 +81,20 @@ function operate(firstInput, operator, secondInput) {
 };
 
 
-
-
+let result;
 let equals = document.querySelector('.equals');
 equals.addEventListener('click', () => {
+    let firstInput = firstInputFunc(displayVal);
+    let secondInput = secondInputFunc(displayVal);
+    let operator = operatorFunc(displayVal);
     let result = operate(firstInput, operator, secondInput);
+    display.textContent = '';
     display.textContent = result;
     return;
-})
+});
 
+/*function extEquation() {
+    let displayVal = '';
+    displayVal += result;
+    return displayVal
+}; */
