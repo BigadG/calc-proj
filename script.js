@@ -3,9 +3,6 @@ let btn = document.querySelector('.button');
 let numBtns = document.querySelector('.numBtns');
 let display = document.querySelector('.display');
 
-let firstInput;
-let secondInput;
-let operator;
 
 numBtns.addEventListener('click', event => {
   let closestBtn = event.target.closest("button");
@@ -13,22 +10,38 @@ numBtns.addEventListener('click', event => {
       return;
     }
   let btnVal = closestBtn.textContent;
-  displayVal += btnVal + ' ';
+  displayVal += btnVal;
   display.textContent = displayVal
-
-  firstInput = displayVal.charAt(0);
-  secondInput = displayVal.charAt(4);
-  operator = displayVal.charAt(2);
   return;
 })
 
+let firstInputFunc = function(displayVal) {
+    let displayValArray = displayVal.split(/\x|\+|\-|\÷/);
+    return displayValArray[0];
+};
+let secondInputFunc = function(displayVal) {
+    let displayValArray = displayVal.split(/\x|\+|\-|\÷/);
+    return displayValArray[1];
+};
+let operatorFunc = function(displayVal) {
+    if (displayVal.indexOf('+') !== -1) {
+        return '+';
+    } else if (displayVal.indexOf('-') !== -1) {
+        return '-';
+    } else if (displayVal.indexOf('÷') !== -1) {
+        return '÷';
+    } else if (displayVal.indexOf('x') !== -1) {
+        return 'x';
+    } else return 'ERROR';
+}
+
+let firstInput = firstInputFunc(displayVal);
+let secondInput = secondInputFunc(displayVal);
+let operator = operatorFunc(displayVal);
 
 
-
-  
-  
 const sum = function (array) {
-return array.reduce((firstInput, secondInput) => firstInput + secondInput, 0);
+return array.reduce((firstInput, secondInput) => Number(firstInput) + Number(secondInput), 0);
 };
   
 const subtract = function (array) {
@@ -55,7 +68,7 @@ function operate(firstInput, operator, secondInput) {
     else if (operator === '-') {
         return subtract(array);
     }
-    else if (operator === 'X') {
+    else if (operator === 'x') {
         return multiply(array);
     }
     else if (operator === '÷') {
@@ -70,6 +83,8 @@ function operate(firstInput, operator, secondInput) {
 
 let equals = document.querySelector('.equals');
 equals.addEventListener('click', () => {
-    return display.textContent = operate(firstInput, operator, secondInput);
+    let result = operate(firstInput, operator, secondInput);
+    display.textContent = result;
+    return;
 })
 
