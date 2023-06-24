@@ -2,8 +2,21 @@ let displayVal = '';
 let btn = document.querySelector('.button');
 let numBtns = document.querySelector('.numBtns');
 let display = document.querySelector('.display');
+let clear = document.querySelector('.clear');
+let deleteBtn = document.querySelector('.deleteBtn');
 
 
+clear.addEventListener('click', event => {
+    displayVal = '';
+    display.textContent = displayVal;
+    return;
+});
+
+deleteBtn.addEventListener('click', event => {
+    displayVal = displayVal.substring(0, displayVal.length - 1);
+    display.textContent = displayVal;
+    return;
+});
 
 numBtns.addEventListener('click', event => {
   let closestBtn = event.target.closest("button");
@@ -88,13 +101,13 @@ equals.addEventListener('click', () => {
     let secondInput = secondInputFunc(displayVal);
     let operator = operatorFunc(displayVal);
     let result = operate(firstInput, operator, secondInput);
-    display.textContent = '';
-    display.textContent = result;
+    display.textContent = extEquation(result);
+    //figure out how to reset displayVal to nothing--before making equal to result
     return;
 });
 
-/*function extEquation() {
-    let displayVal = '';
+function extEquation(result) {
+    displayVal = '';
     displayVal += result;
-    return displayVal
-}; */
+    return displayVal.substring(0, displayVal.length - 1);
+};
