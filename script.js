@@ -23,6 +23,9 @@ numBtns.addEventListener('click', event => {
   if (!closestBtn || !numBtns.contains(closestBtn)) {
       return;
     }
+  if (closestBtn === equals) {
+      return;
+  }
   let btnVal = closestBtn.textContent;
   displayVal += btnVal;
   display.textContent = displayVal
@@ -68,7 +71,7 @@ return array.length
 };
 
 const divide = function (array) {
- return array.length
+    return array.length
    ? array.reduce((firstInput, secondInput) => firstInput / secondInput)
    : 0;
 };
@@ -101,13 +104,15 @@ equals.addEventListener('click', () => {
     let secondInput = secondInputFunc(displayVal);
     let operator = operatorFunc(displayVal);
     let result = operate(firstInput, operator, secondInput);
-    display.textContent = extEquation(result);
+    if (secondInput == '0') {
+        result = 'ERROR!';
+    };
+    return display.textContent = extEquation(result);
     //figure out how to reset displayVal to nothing--before making equal to result
-    return;
 });
 
 function extEquation(result) {
     displayVal = '';
     displayVal += result;
-    return displayVal.substring(0, displayVal.length - 1);
+    return displayVal
 };
