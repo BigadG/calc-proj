@@ -4,6 +4,8 @@ let numBtns = document.querySelector('.numBtns');
 let display = document.querySelector('.display');
 let clear = document.querySelector('.clear');
 let deleteBtn = document.querySelector('.deleteBtn');
+let secondInput;
+let firstInput;
 
 
 clear.addEventListener('click', event => {
@@ -31,7 +33,6 @@ numBtns.addEventListener('click', event => {
   display.textContent = displayVal
   return;
 })
-
 
 
 let firstInputFunc = function(displayVal) {
@@ -104,11 +105,11 @@ equals.addEventListener('click', () => {
     let secondInput = secondInputFunc(displayVal);
     let operator = operatorFunc(displayVal);
     let result = operate(firstInput, operator, secondInput);
-    if (secondInput == '0') {
+    result = Math.round(result * 1000) / 1000;
+    if (secondInput == '' || (secondInput == '0' && operator == '÷')) {
         result = 'ERROR!';
     };
     return display.textContent = extEquation(result);
-    //figure out how to reset displayVal to nothing--before making equal to result
 });
 
 function extEquation(result) {

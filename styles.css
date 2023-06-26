@@ -1,8 +1,16 @@
 .body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: darkred;
     margin: 0px;
-    padding: 100px;
+    padding-bottom: 100px;
+    padding-top: 50px;
+}
+
+.header {
+    font-size: 60px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .calc {
